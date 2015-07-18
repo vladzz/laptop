@@ -1,0 +1,60 @@
+#!/bin/sh
+
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\n$fmt\n" "$@"
+}
+
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+
+set -e
+
+
+# Ensure Apple's command line tools are installed
+if ! command -v cc >/dev/null; then
+  fancy_echo "Installing xcode ..."
+  xcode-select --install
+else
+  fancy_echo "Xcode already installed. Skipping."
+end
+
+# [Install Ansible](http://docs.ansible.com/intro_installation.html).
+
+if ! command -v pip >/dev/null; then
+  fancy_echo "Installing pip ..."
+  sudo easy_install pip
+else
+  fancy_echo "pip already installed. Skipping."
+end
+
+if ! command -v ansible >/dev/null; then
+  fancy_echo "Installing Ansible ..."
+  sudo pip install ansible --quiet
+else
+  fancy_echo "Ansible already installed. Skipping."
+end
+
+# Clone the repository to your local drive.
+
+if [ -d "./laptop" ]; then
+  fancy_echo "Laptop repo dir exists. Removing ..."
+  rm -rf $HOME/laptop/
+fi
+
+fancy_echo "Cloning laptop repo ..."
+git clone https://github.com/siyelo/laptop.git
+
+#Run this command inside this directory to install required Ansible roles.
+
+fancy_echo "Changing to laptop repo dir ..."
+cd laptop
+
+fancy_echo "Installing ansible galaxy requirements"
+ansible-galaxy install -r requirements.txt
+
+# Run this from the same directory as this README file. 
+
+fancy_echo "Running ansible playbook ..."
+ansible-playbook main.yml -i inventory --ask-sudo-pass  

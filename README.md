@@ -1,22 +1,25 @@
-# Mac Development Ansible Playbook
+# Laptop
 
-This playbook installs and configures most of the software I use on my Mac for web and software development. Some things in OS X are difficult to automate (notably, the Mac App Store and certain tools from Apple), so I still have some manual installation steps, but at least it's all documented here.
+Laptop is a playbook to set up an OS X laptop (for web development).
 
-This is a work in progress, and is mostly a means for me to document my current Mac's setup. I'll be adding settings and packages to this set of playbooks over time.
+It installs and configures most of the software Siyelo uses on our Macs for web and software development. 
 
-*See also*:
+Some things in OS X are difficult to automate (notably, the Mac App Store, and certain tools from Apple, so some manual installation steps are still required, but at least it's all documented here.
 
-  - [Battleschool](http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool) is a more general solution than what I've built here. (It may be a better option if you don't want to fork this repo and hack it for your own workstation...).
-  - [osxc](https://github.com/osxc) is another more general solution, set up so you can fork the [xc-custom](https://github.com/osxc/xc-custom) repo and get your own local environment bootstrapped quickly.
-  - [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks) was the original inspiration for this repository, but this project has since been completely rewritten.
+It can be run multiple times on the same machine safely. It installs, upgrades, or skips packages based on what is already installed on the machine.
+
+## Requirements
+
+We've tested it on;
+
+* OS X Yosemite (~10.10.4)
 
 ## Installation
 
-  1. [Install Ansible](http://docs.ansible.com/intro_installation.html).
-  2. Ensure Apple's command line tools are installed (`xcode-select --install` to launch the installer).
-  3. Clone this repository to your local drive.
-  4. Run the command `$ ansible-galaxy install -r requirements.txt` inside this directory to install required Ansible roles.
-  5. Run `ansible-playbook main.yml -i inventory --ask-sudo-pass` from the same directory as this README file.
+curl --remote-name https://raw.githubusercontent.com/siyelo/laptop/master/mac
+less mac
+sh mac 2>&1 | tee ~/laptop.log
+
 
 ## Included Applications / Configuration
 
@@ -126,14 +129,92 @@ I also use the following apps at least once or twice per week, but unfortunately
 
 There are a couple other apps I'm leaving out of the list, like Microsoft Word, because I normally don't install them unless/until I need them.
 
-## Testing the Playbook
+## Development
 
-Many people have asked me if I often wipe my entire workstation and start from scratch just to test changes to the playbook. Nope! Instead, I posted instructions for how I build a [Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which I can continually run and re-run this playbook to test changes and make sure things work correctly.
+You shouldn't wipe your entire workstation and start from scratch just to test changes to the playbook. 
 
-## Ansible for DevOps
+Instead, you can follow theses instructions for [how to build a Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which you can continually run and re-run this playbook to test changes and make sure things work correctly.
 
-Check out [Ansible for DevOps](https://leanpub.com/ansible-for-devops), which will teach you how to do some other amazing things with Ansible.
+### Approach
+
+We've tested it using an OSX 10.10 Vagrant/Virtualbox VM for developing & testing the Ansible scripts.
+
+Simply spin up the Yosemite box in a VM, and have vagrant kick off the laptop setup.
+
+### Whats included?
+
+Nada. Well not much. The whole point is to test the process of getting our OSX dev machines from zero to hero. 
+
+The Vagrant box we use is a [clean-ish install of OSX](https://github.com/timsutton/osx-vm-templates). However the setup notes above uses Packer, which installs Xcode CLI tools. This can't be automated in an actual test run, and needs user intervention to install.
+
+
+### Test Setup
+
+1. Get [Homebrew Cask](http://caskroom.io/)
+    
+      brew install caskroom/cask/brew-cask
+
+1. Install [Vagrant](https://www.vagrantup.com/downloads) 
+
+      brew cask install --appdir="/Applications" vagrant
+
+1. Install VirtualBox;
+
+      brew cask install --appdir="/Applications" virtualbox
+
+1. cd into this project directory;
+
+1. Run 
+
+        vagrant init http://files.dryga.com/boxes/osx-yosemite-10.10.3.0.box;
+
+1. The Vagrantfile should be ready as soon as Vagrant downloads the box;
+
+1. Start VM 
+
+        vagrant up
+
+### Notes
+
+* VirtualBox doesn't have Guest additions for Mac OS X, so you can't have shared folders. Instead you can use normal network shared folders.
+
+* If you are rolling your own box with [the OSX VM template](https://github.com/timsutton/osx-vm-templates), this is the Packer config;
+
+      packer build \
+        -var iso_checksum=aaaabbbbbbcccccccdddddddddd \
+        -var iso_url=../out/OSX_InstallESD_10.10.4_14E46.dmg \
+        -var update_system=0 \
+        -var autologin=true \
+        template.json
+
+
+## TODO
+
+* no forking install a la [battleschool](http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool/).
+
+    #if needed
+    $ sudo easy_install pip
+
+    $ sudo pip install siyelo-laptop
+
 
 ## Author
 
-[Jeff Geerling](http://jeffgeerling.com/), 2014 (originally forked from [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks)).
+[Glenn Roberts](http://glenn-roberts.com), 2015. 
+
+
+## Credits
+
+This project is based off the work of the following folks;
+
+* Jeff Geerlings' [Mac Dev Ansible Playbook](https://github.com/geerlingguy/mac-dev-playbook)
+* [Thoughtbot/laptop](https://github.com/thoughtbot/laptop) (boostrapping, dev tools)
+* [OSX for Hackers](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716) (awesome osx tweaks)
+* [Mackup](https://github.com/lra/mackup)  (backup/restore App settings)
+
+*See also*:
+
+  - [Battleschool](http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool) is a more general solution than what I've built here. (It may be a better option if you don't want to fork this repo and hack it for your own workstation...).
+  - [osxc](https://github.com/osxc) is another more general solution, set up so you can fork the [xc-custom](https://github.com/osxc/xc-custom) repo and get your own local environment bootstrapped quickly.
+  - [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks) was the original inspiration for this repository, but this project has since been completely rewritten.
+
