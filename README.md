@@ -16,9 +16,7 @@ We've tested it on;
 
 ## Installation
 
-    curl --remote-name https://raw.githubusercontent.com/siyelo/laptop/master/mac
-    less mac
-    sh mac 2>&1 | tee ~/laptop.log
+    curl --remote-name https://raw.githubusercontent.com/siyelo/laptop/master/mac && sh mac 2>&1 | tee ~/laptop.log
 
 
 ## Included Applications / Configuration
