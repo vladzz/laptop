@@ -1,5 +1,21 @@
 #!/bin/sh
 
+# Welcome to the siyelo laptop script!
+# Be prepared to turn your OSX box into 
+# a development beast.
+#
+# This script bootstraps our OSX laptop to a point where we can run
+# Ansible on localhost. It;
+#  1. Installs 
+#    - xcode
+#    - homebrew
+#    - ansible (via brew) 
+#    - a few ansible galaxy playbooks (zsh, homebrew, cask etc)  
+#  2. Kicks off the ansible playbook
+#    - main.yml
+#
+# It will ask you for your sudo password
+
 fancy_echo() {
   local fmt="$1"; shift
 
@@ -51,7 +67,7 @@ git clone https://github.com/siyelo/laptop.git 2>&1
 fancy_echo "Changing to laptop repo dir ..."
 cd laptop
 fancy_echo "Installing ansible galaxy requirements"
-ansible-galaxy install -r requirements.txt --roles-path=./roles/ 2>&1
+ansible-galaxy install -r requirements.txt 2>&1
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
