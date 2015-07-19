@@ -35,7 +35,7 @@ set -e
 # Ensure Apple's command line tools are installed
 if ! command -v cc >/dev/null; then
   fancy_echo "Installing xcode ..."
-  xcode-select --install 2>&1
+  xcode-select --install 
 else
   fancy_echo "Xcode already installed. Skipping."
 fi
@@ -50,7 +50,7 @@ fi
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
-  brew install ansible 2>&1
+  brew install ansible 
 else
   fancy_echo "Ansible already installed. Skipping."
 fi
@@ -61,14 +61,14 @@ if [ -d "./laptop" ]; then
   rm -rf ./laptop/
 fi
 fancy_echo "Cloning laptop repo ..."
-git clone https://github.com/siyelo/laptop.git 2>&1
+git clone https://github.com/siyelo/laptop.git 
 
 #Run this command inside this directory to install required Ansible roles.
 fancy_echo "Changing to laptop repo dir ..."
 cd laptop
 fancy_echo "Installing ansible galaxy requirements"
-ansible-galaxy install -r requirements.txt --force 2>&1
+ansible-galaxy install -r requirements.txt --force 
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
-ansible-playbook main.yml -i inventory --ask-sudo-pass -vvvv 2>&1
+ansible-playbook main.yml -i inventory --ask-sudo-pass -vvvv 
