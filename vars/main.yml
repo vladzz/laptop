@@ -2,6 +2,7 @@
 downloads: ~/.ansible-downloads/
 
 ohmyzsh_change_shell: true # switch default shell to zsh
+ohmyzsh_users: [ "{{ ansible_user_id }}" ] # whoever is running ansible
 
 dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
 dotfiles_repo_local_destination: ~/Dropbox/Development/GitHub/dotfiles
