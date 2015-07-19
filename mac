@@ -51,8 +51,8 @@ git clone https://github.com/siyelo/laptop.git
 fancy_echo "Changing to laptop repo dir ..."
 cd laptop
 fancy_echo "Installing ansible galaxy requirements"
-ansible-galaxy install -r requirements.txt --roles-path=./roles/
+ansible-galaxy install -r requirements.txt --roles-path=./roles/ 2>&1
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
-ansible-playbook main.yml -i inventory --ask-sudo-pass -vvvv
+ansible-playbook main.yml -i inventory --ask-sudo-pass -vvvv 2>&1
