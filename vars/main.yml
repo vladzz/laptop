@@ -15,69 +15,84 @@ dotfiles_files:
   - .vimrc
 
 homebrew_installed_packages:
-  - ansible
+  # - ansible #already installed by ./mac bootstrap script
   - autoconf
-  - bash-completion
-  - boot2docker
+  - boot2docker # for running docker on osx
+  - brew-cask
+  - cowsay # amazing
+  - ctags
   - docker
-  - gettext
+  - encfs # encryption
   - git
   - go
   - gpg
-  - iperf
-  - libevent
-  - packer
-  - python
-  - sqlite
-  - mysql
+  - imagemagick # IDK why, but I always end up needing this beast
+  - mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
+  - mongodb # a shittier PG 
+  - mtr # better traceroute
+  - mysql # required PHP library 
+  - node
   - npm
-  - php56
-  - php56-xdebug
-  - ssh-copy-id
-  - cowsay
-  - ios-sim
-  - readline
-  - subversion
-  - kdiff3
   - openssl
-  - pv
-  - drush
+  - phantomjs 
+  - postgresql # yes and nosql
+  - python
+  - rbenv # ruby
+  - readline
+  - redis
+  - rename # rename multiple files
+  - ruby-build
+  - sqlite # production rails DB
+  - the_silver_searcher # fast ack-grep
   - wget
-  - wrk
-  - brew-cask
 
 homebrew_taps:
   - caskroom/cask
+  - caskroom/versions # for sublime-text3
   - homebrew/binary
   - homebrew/dupes
-  - homebrew/php
   - homebrew/versions
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - adium
-  - bettertouchtool
+  - atom # sublime without annoying popup
+  - bettertouchtool # window snapping
+  - dropbox # a worse Mega Sync
+  - calibre # berks
+  - fing # network diagnostics
+  - firefox 
+  - flux # get more sleep
   - google-chrome
-  - dropbox
-  - fing
-  - firefox
-  - handbrake
-  - karabiner
-  - limechat
-  - licecap
-  - macvim
-  - menumeters
-  - nvalt
-  - sequel-pro
-  - skype
-  - skitch
-  - seil
-  - sublime-text # Note - Sublime Text 2 only, at this time...
-  - textmate
-  - timemachineeditor
-  - tower
-  - transmit
-  - vagrant
+  - jumpcut # awesome clipboard
+  - karabiner # Keyboard customization
+  - licecap # GIFs !
+  - disk-inventory-x # reclaim space on your expensive-ass Apple SSD 
+  - istumbler # network discovery GUI
+  - little-snitch # awesome outbound firewall
+  - macvim # a shittier vim
+  - megasync # a better Dropbox  
+  - nvalt # fast note taking
+  - rowanj-gitx # Awesome gitx fork.
+  - seil # Keyboard customization
+  - sequel-pro # FREE SQL GUI!
+  - skype # 
+  - sublime-text3 # (experimental cask)
+  - tor # be the noise
+  - thunderbird # email
+  - tomighty # pomodoro
+  - tower # another git client
+  - transmit # ftp
+  - transmission # torrents
+  - tunnelblick # VPN
+  - vagrant 
   - vagrant-manager
-  - vlc
   - virtualbox
+  - vlc 
+  - zoomus # better videoconferences
+
+# appstore_apps
+  # - monosnap
+  # - pages
+  # - numbers
+  # - keynote
+  # - 1Password

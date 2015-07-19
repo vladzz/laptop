@@ -47,6 +47,8 @@ else
   fancy_echo "Homebrew already installed. Skipping."
 fi
 
+brew update
+
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
