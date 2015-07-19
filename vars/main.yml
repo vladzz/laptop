@@ -17,15 +17,19 @@ dotfiles_files:
 homebrew_installed_packages:
   # - ansible #already installed by ./mac bootstrap script
   - autoconf
+  - bash # Bash 4
   - boot2docker # for running docker on osx
   - brew-cask
   - cowsay # amazing
+  - coreutils # Install GNU core utilities (those that come with OS X are outdated)
   - ctags
-  - docker
+  - docker # | https://docs.docker.com/installation/mac/
   - encfs # encryption
+  - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
   - git
   - go
   - gpg
+  - homebrew/dupes/grep # more recent version of OS X grep
   - imagemagick # IDK why, but I always end up needing this beast
   - mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
   - mongodb # a shittier PG 
@@ -44,7 +48,9 @@ homebrew_installed_packages:
   - ruby-build
   - sqlite # production rails DB
   - the_silver_searcher # fast ack-grep
+  - vim
   - wget
+
 
 homebrew_taps:
   - caskroom/cask
@@ -55,10 +61,12 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - atom # sublime without annoying popup
-  - bettertouchtool # window snapping
+  - alfred # | http://www.alfredapp.com 
+  - atom # sublime without annoying popup | https://atom.io/download/mac
+  - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
   - dropbox # a worse Mega Sync
   - calibre # berks
+  - carbon-copy-cloner # backups | https://bombich.com/download
   - fing # network diagnostics
   - firefox 
   - flux # get more sleep
@@ -66,7 +74,7 @@ homebrew_cask_apps:
   - jumpcut # awesome clipboard
   - karabiner # Keyboard customization
   - licecap # GIFs !
-  - disk-inventory-x # reclaim space on your expensive-ass Apple SSD 
+  - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
   - istumbler # network discovery GUI
   - little-snitch # awesome outbound firewall
   - macvim # a shittier vim
@@ -76,7 +84,7 @@ homebrew_cask_apps:
   - seil # Keyboard customization
   - sequel-pro # FREE SQL GUI!
   - skype # 
-  - sublime-text3 # (experimental cask)
+  - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
   - tor # be the noise
   - thunderbird # email
   - tomighty # pomodoro
@@ -84,9 +92,9 @@ homebrew_cask_apps:
   - transmit # ftp
   - transmission # torrents
   - tunnelblick # VPN
-  - vagrant 
-  - vagrant-manager
-  - virtualbox
+  - vagrant # | https://www.vagrantup.com/downloads.html
+  - vagrant-manager # 
+  - virtualbox # | https://www.virtualbox.org/
   - vlc 
   - zoomus # better videoconferences
 
