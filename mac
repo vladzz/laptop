@@ -67,7 +67,7 @@ git clone https://github.com/siyelo/laptop.git 2>&1
 fancy_echo "Changing to laptop repo dir ..."
 cd laptop
 fancy_echo "Installing ansible galaxy requirements"
-ansible-galaxy install -r requirements.txt 2>&1
+ansible-galaxy install -r requirements.txt --ignore-errors 2>&1
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
