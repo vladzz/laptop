@@ -7,7 +7,7 @@
     - vars/main.yml
 
   roles:
-    - opdavies.oh-my-zsh
+    - glennr.oh-my-zsh
     - geerlingguy.homebrew
     - geerlingguy.dotfiles
 
