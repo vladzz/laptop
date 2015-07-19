@@ -1,2 +1,3 @@
+devbox.oh-my-zsh
 geerlingguy.dotfiles
 geerlingguy.homebrew
