@@ -24,7 +24,7 @@
       - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
       - dropbox # a worse Mega Sync
       #- evernote 
-      - fing # network diagnostics
+      #- fing # network diagnostics
       - firefox 
       - flux # get more sleep
       - google-chrome
@@ -63,7 +63,7 @@
       #- subtitles # auto download subtitles 
       - thunderbird # email
       - tomighty # pomodoro
-      - tor # be the noise
+      - torbrowser # be the noise
       - tower # another git client
       - transmission # torrents
       #- transmit # ftp 
@@ -73,7 +73,7 @@
       - virtualbox # | https://www.virtualbox.org/
       - vlc 
       #- xtrafinder # moar Finder! 
-      - zoomus # better videoconferences
+      #- zoomus # better videoconferences
 
     install_oh_my_zsh:  true
 
