@@ -103,7 +103,7 @@
       - git
       - go
       - gpg
-      - homebrew/dupes/grep # more recent version of OS X grep
+      #- homebrew/dupes/grep # more recent version of OS X grep # ansible bug: https://github.com/ansible/ansible-modules-extras/issues/252
       - hub # github
       #- imagemagick # IDK why, but I always end up needing this beast
       #- mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
