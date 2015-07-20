@@ -63,6 +63,9 @@ fi
 fancy_echo "Cloning laptop repo ..."
 git clone https://github.com/siyelo/laptop.git 
 
+fancy_echo "Changing to laptop repo dir ..."
+cd laptop
+
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
 ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
