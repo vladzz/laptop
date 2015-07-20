@@ -4,80 +4,76 @@
   vars:
 
     applications:
-      # - adium
-      # - deeper # (w/ onyx) turn on hidden functions
-      # - keka # file archiving
-      # - onyx # system maintenance
-      # - subtitles # auto download subtitles
-      #- cord # RDP remote control
-      #- evernote
-      #- google-drive
-      #- iterm2
-      #- nosleep # prevent mac from sleeping when closing lid
-      #- packer # machine images
-      #- rcdefaultapp # set default app for different URLs
-      #- skitch
-      #- xtrafinder # moar Finder!
+      #- adium 
       - alfred # | http://www.alfredapp.com 
-      - anvil # run sites locally
+      #- anvil # run sites locally 
       - apptrap # remove associated prefs when uninstalling
       - appzapper # uninstaller
-      - atom # sublime without annoying popup | https://atom.io/download/mac
+      #- atom # sublime without annoying popup | https://atom.io/download/mac 
       - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-      - betterzipql # quick look for zips
-      - bodega # a less-shit mac store
-      - caffeine # prevent mac from sleeping
-      - calibre # berks
+      #- betterzipql # quick look for zips 
+      #- bodega # a less-shit mac store 
+      #- caffeine # prevent mac from sleeping 
+      #- calibre # berks 
       - carbon-copy-cloner # backups | https://bombich.com/download
       - cheatsheet # know your shortcuts
+      #- cord # RDP remote control 
       - cyberduck # ftp, s3, openstack
       - dash # totally sick API browser
+      #- deeper # (w/ onyx) turn on hidden functions 
       - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
       - dropbox # a worse Mega Sync
+      #- evernote 
       - fing # network diagnostics
       - firefox 
       - flux # get more sleep
       - google-chrome
-      - handbrake
+      #- google-drive 
+      #- handbrake # vid compression 
       - imageoptim # optimize images
       - istumbler # network discovery GUI
+      #- iterm2 
       - jumpcut # awesome clipboard
       - karabiner # Keyboard customization
+      #- keka # file archiving 
       - licecap # GIFs !
       - little-snitch # awesome outbound firewall
-      - mactracker # benchmarking
-      - macvim # a shittier vim
+      #- mactracker # benchmarking 
+      #- macvim # a shittier vim 
       - megasync # a better Dropbox  
       - monolingual # remove unneeded osx lang files
-      - namechanger # rename files in bulk
+      #- namechanger # rename files in bulk 
+      #- nosleep # prevent mac from sleeping when closing lid 
       - nvalt # fast note taking
+      #- onyx # system maintenance 
+      #- packer # machine images 
       - qlcolorcode # quick look syntax highlighting
       - qlimagesize # quick look image dimensions
       - qlmarkdown # quick look .md files
       - qlstephen # quick look extension-less text files
+      #- rcdefaultapp # set default app for different URLs 
       - rowanj-gitx # Awesome gitx fork.
-      - seil # Keyboard customization
+      #- seil # Keyboard customization 
       - sequel-pro # FREE SQL GUI!
       - shortcat # kill your mouse
       - shuttle # ssh management
+      #- skitch 
       - skype # 
       - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
+      #- subtitles # auto download subtitles 
       - thunderbird # email
       - tomighty # pomodoro
       - tor # be the noise
       - tower # another git client
       - transmission # torrents
-      - transmit # ftp
+      #- transmit # ftp 
       - tunnelblick # VPN
       - vagrant # | https://www.vagrantup.com/downloads.html
       - vagrant-manager # 
       - virtualbox # | https://www.virtualbox.org/
       - vlc 
+      #- xtrafinder # moar Finder! 
       - zoomus # better videoconferences
-
-    zsh_path: /usr/local/bin/zsh
-
-    home: "{{ lookup('env','HOME') }}"
 
     install_oh_my_zsh:  true
 
@@ -92,6 +88,50 @@
 
 #    dotfile_repos:
 #       - glennr/dotfiles
+
+    brew_utils:
+      # - ansible #already installed by ./mac bootstrap script
+      - autoconf
+      - bash # Bash 4
+      - boot2docker # for running docker on osx
+      - brew-cask
+      - cowsay # amazing
+      - coreutils # Install GNU core utilities (those that come with OS X are outdated)
+      - ctags
+      - docker # | https://docs.docker.com/installation/mac/
+      - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+      - git
+      - go
+      - gpg
+      - homebrew/dupes/grep # more recent version of OS X grep
+      - hub
+      - imagemagick # IDK why, but I always end up needing this beast
+      - mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
+      - mongodb # a shittier PG 
+      - mtr # better traceroute
+      - mysql # required PHP library 
+      - node
+      - npm
+      - openssl
+      - packer
+      - phantomjs 
+      - postgresql # yes and nosql
+      - python
+      - rbenv # ruby
+      - readline
+      - redis
+      - rename # rename multiple files
+      - rsync
+      - ruby-build
+      - sqlite # production rails DB
+      - the_silver_searcher # fast ack-grep
+      - tmux
+      - vim
+      - wget
+
+    zsh_path: /usr/local/bin/zsh
+
+    home: "{{ lookup('env','HOME') }}"
 
   tasks:
     
@@ -115,48 +155,9 @@
       shell: brew tap phinze/cask && brew install brew-cask
       when: brew_cask_installed.stat.exists == false
 
-    - name: Install libraries and apps with homebrew
+    - name: Install libraries/utils with homebrew
       homebrew: name={{ item }} state=present
-      with_items:
-        # - ansible #already installed by ./mac bootstrap script
-        - autoconf
-        - bash # Bash 4
-        - boot2docker # for running docker on osx
-        - brew-cask
-        - cowsay # amazing
-        - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-        - ctags
-        - docker # | https://docs.docker.com/installation/mac/
-        - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-        - git
-        - go
-        - gpg
-        - homebrew/dupes/grep # more recent version of OS X grep
-        - hub
-        - imagemagick # IDK why, but I always end up needing this beast
-        - mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
-        - mongodb # a shittier PG 
-        - mtr # better traceroute
-        - mysql # required PHP library 
-        - node
-        - npm
-        - openssl
-        - packer
-        - phantomjs 
-        - postgresql # yes and nosql
-        - python
-        - rbenv # ruby
-        - readline
-        - redis
-        - rename # rename multiple files
-        - rsync
-        - ruby-build
-        - sqlite # production rails DB
-        - the_silver_searcher # fast ack-grep
-        - tmux
-        - vim
-        - wget
-
+      with_items: brew_utils
 
     - name: Check for installed apps(casks)
       shell: brew cask list | grep {{ item }}
@@ -164,7 +165,7 @@
       with_items: applications
       ignore_errors: true
     
-    - name: Install apps with brew-cask
+    - name: Install Apps with brew-cask
       shell: brew cask install {{ item }}
       with_items: applications
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
