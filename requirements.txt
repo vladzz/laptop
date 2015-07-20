@@ -1,3 +1,0 @@
-glennr.oh-my-zsh
-geerlingguy.dotfiles
-geerlingguy.homebrew
