@@ -24,6 +24,7 @@ homebrew_installed_packages:
   - coreutils # Install GNU core utilities (those that come with OS X are outdated)
   - ctags
   - docker # | https://docs.docker.com/installation/mac/
+  - encfs # encryption
   - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
   - git
   - go
