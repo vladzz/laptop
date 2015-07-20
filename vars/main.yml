@@ -24,7 +24,6 @@ homebrew_installed_packages:
   - coreutils # Install GNU core utilities (those that come with OS X are outdated)
   - ctags
   - docker # | https://docs.docker.com/installation/mac/
-  - encfs # encryption
   - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
   - git
   - go
@@ -56,7 +55,8 @@ homebrew_taps:
   - caskroom/cask
   - caskroom/versions # for sublime-text3
   - homebrew/binary
-  - homebrew/dupes
+  - homebrew/dupes # gnu grep
+  - homebrew/fuse # encfs
   - homebrew/versions
 
 homebrew_cask_appdir: /Applications
