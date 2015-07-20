@@ -19,7 +19,6 @@ We've tested it on;
     curl --remote-name https://raw.githubusercontent.com/siyelo/laptop/master/mac
     sh mac 
 
-
 ## Included Applications / Configuration
 
 Applications (installed with Homebrew Cask):

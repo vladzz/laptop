@@ -14,7 +14,7 @@
       #- betterzipql # quick look for zips 
       #- bodega # a less-shit mac store 
       #- caffeine # prevent mac from sleeping 
-      #- calibre # berks 
+      #- calibre # berks
       - carbon-copy-cloner # backups | https://bombich.com/download
       - cheatsheet # know your shortcuts
       #- cord # RDP remote control 
@@ -97,27 +97,27 @@
       - brew-cask
       - cowsay # amazing
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-      - ctags
+      #- ctags
       - docker # | https://docs.docker.com/installation/mac/
       - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
       - git
       - go
       - gpg
       - homebrew/dupes/grep # more recent version of OS X grep
-      - hub
-      - imagemagick # IDK why, but I always end up needing this beast
-      - mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
-      - mongodb # a shittier PG 
+      - hub # github
+      #- imagemagick # IDK why, but I always end up needing this beast
+      #- mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
+      #- mongodb # a shittier PG 
       - mtr # better traceroute
-      - mysql # required PHP library 
+      #- mysql # required PHP library 
       - node
       - npm
       - openssl
       - packer
-      - phantomjs 
+      # - phantomjs 
       - postgresql # yes and nosql
       - python
-      - rbenv # ruby
+      - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
       - readline
       - redis
       - rename # rename multiple files
