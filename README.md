@@ -154,7 +154,7 @@ Keep your user prefs in sync
 TODO: dotfiles - use rcm ?
 
 
-### App Configuration
+### System Settings
 
 Finally, there are a few other useful system preferences/settings/tweaks. 
 
