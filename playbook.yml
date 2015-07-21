@@ -215,6 +215,6 @@
       tags: install_oh_my_zsh
 
     - name: Creating default ~/.zshrc
-      command: cp ~{{user}}/.oh-my-zsh/templates/zshrc.zsh-template ~{{user}}/.zshrc
+      command: cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
       sudo: false
       when: install_oh_my_zsh == true
