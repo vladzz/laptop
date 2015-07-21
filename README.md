@@ -95,9 +95,11 @@ TODO: update this list
   - VirtualBox
   - VLC
 
+There are many more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
+
 ### MacStore Apps
 
-These only available via the App Store. 
+These apps only available via the App Store. (sigh)
 
 TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
 
@@ -107,7 +109,6 @@ TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh a
   - Keynote
   - Numbers
   - etc
-
 
 ### Packages/Utilities 
  
@@ -136,12 +137,15 @@ TODO: update this list
   - wget
   - brew-cask
 
+There are many more common utils listed in the playbook.yml - simply uncomment them to include them in your install. 
+
 
 ### Application Settings
 
 Keep your application settings in sync.
 
 TODO: Add Mackup task
+
 
 ### User Preferences
 
@@ -159,11 +163,21 @@ Finally, there are a few other useful system preferences/settings/tweaks.
   6. Set trackpad tracking rate.
   7. Set mouse tracking rate.
 
-TODO: Adapt OSX-for Hackers https://gist.github.com/brandonb927/3195465 
+TODO: Adapt OSX-for Hackers 
+   - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
+   - https://gist.github.com/brandonb927/3195465 
+
 
 ### Other 
 
-  - TODO: Install [Sublime Package Manager](http://sublime.wbond.net/installation).
+- install fonts like a boss : http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
+
+- TODO: Install [Sublime Package Manager](http://sublime.wbond.net/installation).
+- ZSH tab/auto completion
+- Powerline in tmux
+- zsh-autosuggestions plugin
+- zsh-history-substring-search plugin
+- zsh-notify plugin
 
 
 

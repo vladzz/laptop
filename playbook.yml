@@ -92,6 +92,7 @@
     brew_utils:
       # - ansible #already installed by ./mac bootstrap script
       - autoconf
+      - autojump # quickly navigate from cmd line
       - bash # Bash 4
       - boot2docker # for running docker on osx
       - brew-cask
@@ -99,6 +100,7 @@
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
       #- ctags
       - docker # | https://docs.docker.com/installation/mac/
+      #- ffmpeg
       - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
       - git
       - go
@@ -115,6 +117,7 @@
       - npm
       - openssl
       - packer
+      - pip # python
       # - phantomjs 
       - postgresql # yes and nosql
       - python
@@ -160,6 +163,9 @@
     - name: Install libraries/utils with homebrew
       homebrew: name={{ item }} state=present
       with_items: brew_utils
+    
+    - name: Cleanup after brewing
+      shell: brew cleanup
 
     - name: Check for installed apps(casks)
       shell: brew cask list | grep {{ item }}
@@ -213,12 +219,12 @@
     #    - elasticsearch
     #
 
-    - name: Clone dotfiles
-      # I set force and update to no so that if I have any working changes 
-      # or changes that I haven't pushed up it doesn't reset my local history.
-      git: repo=git@github.com:{{ item }}.git dest={{ home }}/{{ item }} force=no update=no
-      with_items:
-        - dotfile_repos
+    # - name: Clone dotfiles
+    #   # I set force and update to no so that if I have any working changes 
+    #   # or changes that I haven't pushed up it doesn't reset my local history.
+    #   git: repo=git@github.com:{{ item }}.git dest={{ home }}/{{ item }} force=no update=no
+    #   with_items:
+    #     - dotfile_repos
 
     - name: Install oh-my-zsh
       shell: "{{ home }}/dotfiles/zsh/oh-my-zsh/bootstrap-oh-my-zsh.sh"
