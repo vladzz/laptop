@@ -181,11 +181,13 @@
 
     - name: Enable zsh in /etc/shells
       shell: sudo /bin/sh -c 'grep -q "{{ zsh_path }}" /etc/shells || echo "{{ zsh_path }}" >> /etc/shells'
-      when: current_shell.stdout != '/usr/local/bin/zsh'
+      when: current_shell.stdout != '/usr/local/bin/zsh'    
+      #" unbreak my syntax highlighting...
 
     - name: Set zsh as default shell
       shell: chsh -s {{ zsh_path }}
       when: current_shell.stdout != '/usr/local/bin/zsh'
+      sudo: true
 
     - name: Use GNU tools instead of osx counterparts (grep find etc) (ZSH)
       shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.zshrc
@@ -206,28 +208,13 @@
       shell: brew tap thoughtbot/formulae && brew install rcm
       when: rcm_installed.stat.exists == false
 
-    #- name: Start services at login
-    #  file: src=/usr/local/opt/{{ item }}/homebrew.mxcl.{{ item }}.plist path=~/Library/LaunchAgents/homebrew.mxcl.{{ item }}.plist state=link force=yes
-    #  with_items: 
-    #    - mysql
-    #    - elasticsearch
- 
-    #- name: Setup launch agents for services
-    #  command: launchctl load {{ home }}/Library/LaunchAgents/homebrew.mxcl.{{ item }}.plist
-    #  with_items:
-    #    - mysql
-    #    - elasticsearch
-    #
-
-    # - name: Clone dotfiles
-    #   # I set force and update to no so that if I have any working changes 
-    #   # or changes that I haven't pushed up it doesn't reset my local history.
-    #   git: repo=git@github.com:{{ item }}.git dest={{ home }}/{{ item }} force=no update=no
-    #   with_items:
-    #     - dotfile_repos
-
     - name: Install oh-my-zsh
       git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
       sudo: false
       when: install_oh_my_zsh == true
       tags: install_oh_my_zsh
+
+    - name: Creating default ~/.zshrc
+      command: cp ~{{user}}/.oh-my-zsh/templates/zshrc.zsh-template ~{{user}}/.zshrc
+      sudo: false
+      when: install_oh_my_zsh == true
