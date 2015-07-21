@@ -117,7 +117,6 @@
       - npm
       - openssl
       - packer
-      - pip # python
       # - phantomjs 
       - postgresql # yes and nosql
       - python
