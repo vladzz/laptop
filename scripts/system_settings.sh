@@ -5,7 +5,7 @@
 # TODO: Move to ansible tasks (for bonus internet points).
 
 # Ask for the administrator password upfront
-sudo -v
+# sudo -v #assumes ansible -ask-sudo-pass already
 
 echo "This script will make your Mac awesome. Read it carefully first!"
 
