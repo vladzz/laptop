@@ -199,6 +199,7 @@
 
     - name: Configure System Settings
       script: scripts/system_settings.sh
+      sudo: true
 
     - name: Check rcm is installed
       stat: path=/usr/local/bin/rcup

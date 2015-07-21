@@ -97,18 +97,6 @@ TODO: update this list
 
 There are many more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
 
-### MacStore Apps
-
-These apps only available via the App Store. (sigh)
-
-TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
-
-  - 1Password
-  - Monosnap
-  - Pages
-  - Keynote
-  - Numbers
-  - etc
 
 ### Packages/Utilities 
  
@@ -140,7 +128,38 @@ TODO: update this list
 There are many more common utils listed in the playbook.yml - simply uncomment them to include them in your install. 
 
 
-### Application Settings
+### System Settings
+
+It installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
+
+It does some reasonably gnarly stuff e.g.
+
+  - hide spotlight icon
+  - disable app Gate Keeper
+  - change stand-by delay from 1hr to 12hrs. 
+  - Set trackpad tracking rate.
+  - Set mouse tracking rate.
+  - and lots more...
+
+so you might want to read it very carefully first!! (see scripts/system_settings.sh)
+
+
+### MacStore Apps (WIP)
+
+These apps only available via the App Store. (sigh)
+
+TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
+
+  - 1Password
+  - Monosnap
+  - Pages
+  - Keynote
+  - Numbers
+  - etc
+
+
+
+### Application Settings (WIP)
 
 Keep your application settings in sync.
 
@@ -152,20 +171,6 @@ TODO: Add Mackup task
 Keep your user prefs in sync
 
 TODO: dotfiles - use rcm ?
-
-
-### System Settings
-
-Finally, there are a few other useful system preferences/settings/tweaks. 
-
-  e.g. 
-
-  6. Set trackpad tracking rate.
-  7. Set mouse tracking rate.
-
-TODO: Adapt OSX-for Hackers 
-   - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
-   - https://gist.github.com/brandonb927/3195465 
 
 
 ### Other 
