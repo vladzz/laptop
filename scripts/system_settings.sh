@@ -7,7 +7,7 @@
 # Ask for the administrator password upfront
 sudo -v
 
-echo "This script will make your Mac awesome"
+echo "This script will make your Mac awesome. Read it carefully first!"
 
 ###############################################################################
 # General UI/UX

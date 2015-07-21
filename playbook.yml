@@ -197,6 +197,9 @@
       shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.bash_profile
       when: install_oh_my_zsh != true
 
+    - name: Configure System Settings
+      script: scripts/system_settings.sh
+
     - name: Check rcm is installed
       stat: path=/usr/local/bin/rcup
       register: rcm_installed
