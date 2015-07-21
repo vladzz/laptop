@@ -130,7 +130,7 @@ There are many more common utils listed in the playbook.yml - simply uncomment t
 
 ### System Settings
 
-It installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
+It also installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
 
 It does some reasonably gnarly stuff e.g.
 
@@ -141,7 +141,7 @@ It does some reasonably gnarly stuff e.g.
   - Set mouse tracking rate.
   - and lots more...
 
-so you might want to read it very carefully first!! (see scripts/system_settings.sh)
+so you might want to read it very carefully first. (see scripts/system_settings.sh)
 
 
 ### MacStore Apps (WIP)
