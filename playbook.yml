@@ -77,8 +77,6 @@
 
     install_oh_my_zsh:  true
 
-    install_prezto: false
-
     brew_taps:
       - caskroom/cask
       - caskroom/versions # for sublime-text3
@@ -229,11 +227,7 @@
     #     - dotfile_repos
 
     - name: Install oh-my-zsh
-      shell: "{{ home }}/dotfiles/zsh/oh-my-zsh/bootstrap-oh-my-zsh.sh"
+      git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
+      sudo: false
       when: install_oh_my_zsh == true
       tags: install_oh_my_zsh
-
-    - name: Install Prezto (zsh)
-      shell: "{{ home }}/dotfiles/zsh/prezto/bootstrap-prezto.sh"
-      when: install_prezto == true
-      tags: install_prezto
