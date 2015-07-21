@@ -64,7 +64,7 @@
       - thunderbird # email
       - tomighty # pomodoro
       - torbrowser # be the noise
-      - tower # another git client
+      #- tower # another git client
       - transmission # torrents
       #- transmit # ftp 
       - tunnelblick # VPN
@@ -106,6 +106,7 @@
       #- homebrew/dupes/grep # more recent version of OS X grep # ansible bug: https://github.com/ansible/ansible-modules-extras/issues/252
       - hub # github
       #- imagemagick # IDK why, but I always end up needing this beast
+      - keybase # in alpha at time of writing.
       #- mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
       #- mongodb # a shittier PG 
       - mtr # better traceroute
