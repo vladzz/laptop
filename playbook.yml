@@ -21,6 +21,7 @@
       - cyberduck # ftp, s3, openstack
       - dash # totally sick API browser
       #- deeper # (w/ onyx) turn on hidden functions 
+      - diffmerge # free visual diq
       - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
       - dropbox # a worse Mega Sync
       #- evernote 
@@ -84,8 +85,7 @@
       - homebrew/dupes # gnu grep
       - homebrew/versions 
 
-#    dotfile_repos:
-#       - glennr/dotfiles
+    dotfile_repo_username: glennr # the GH repo where your dotfiles are
 
     brew_utils:
       # - ansible #already installed by ./mac bootstrap script
@@ -157,12 +157,17 @@
       shell: brew install brew-cask
       when: brew_cask_installed.stat.exists == false
 
+    ### UTILS
+
     - name: Install libraries/utils with homebrew
       homebrew: name={{ item }} state=present
       with_items: brew_utils
     
     - name: Cleanup after brewing
       shell: brew cleanup
+
+
+    ### APPZ
 
     - name: Check for installed apps(casks)
       shell: brew cask list | grep {{ item }}
@@ -174,7 +179,10 @@
       shell: brew cask install {{ item }}
       with_items: applications
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
-  
+ 
+
+    ### ZSH radness 
+
     - name: Determine if zsh is default/current shell
       shell: echo $SHELL
       register: current_shell
@@ -193,9 +201,22 @@
       shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.zshrc
 
 
+    - name: Install oh-my-zsh
+      git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
+      sudo: false
+      when: install_oh_my_zsh == true
+      tags: install_oh_my_zsh
+
+
+    ### OSX SETTINGS
+
     - name: Configure System Settings
       script: scripts/system_settings.sh
       sudo: true
+
+
+
+    ### DOTFILES
 
     - name: Check rcm is installed
       stat: path=/usr/local/bin/rcup
@@ -205,13 +226,34 @@
       shell: brew tap thoughtbot/formulae && brew install rcm
       when: rcm_installed.stat.exists == false
 
-    - name: Install oh-my-zsh
-      git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
-      sudo: false
-      when: install_oh_my_zsh == true
-      tags: install_oh_my_zsh
+    - name: Check ~/src dir exists
+      stat: path=$HOME/src/
+      register: src_dir_exists
 
-    - name: Creating default ~/.zshrc
-      command: cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-      sudo: false
-      when: install_oh_my_zsh == true
+    - name: Assures ~/src dir exists
+      file: path=$HOME/src state=directory
+
+    - name: Assures ~/src/thoughtbot dir exists
+      file: path=$HOME/src/thoughtbot state=directory
+
+    - name: Install thoughtbot/dotfiles
+      git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
+
+    - name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
+      file: src=$HOME/dotfiles 
+            dest=$HOME/src/thoughtbot/dotfiles
+            state=link 
+      
+    - name: Assures ~/src/{{ dotfile_repo_username }} dir exists
+      file: path=$HOME/src/{{ dotfile_repo_username }} state=directory
+
+    - name: Install {{ dotfile_repo_username }}/dotfiles
+      git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
+
+    - name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
+      file: src=$HOME/dotfiles-local
+            dest=$HOME/src/{{ dotfile_repo_username }}/dotfiles
+            state=link 
+
+    - name: Generate dotfiles with rcup
+      shell: env RCRC=$HOME/dotfiles/rcrc rcup
