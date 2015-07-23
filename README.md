@@ -194,7 +194,6 @@ These apps only available via the App Store. (sigh)
 
 TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
 
-  - 1Password
   - Monosnap
   - Pages
   - Keynote
