@@ -143,6 +143,8 @@ It does some reasonably gnarly stuff e.g.
 
 so you might want to read it very carefully first. (see scripts/system_settings.sh)
 
+TODO: moar sick settings with https://github.com/ryanmaclean/OSX-Post-Install-Script
+
 
 ### MacStore Apps (WIP)
 

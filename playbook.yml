@@ -189,13 +189,9 @@
       when: current_shell.stdout != '/usr/local/bin/zsh'
       sudo: true
 
-    - name: Use GNU tools instead of osx counterparts (grep find etc) (ZSH)
+    - name: Use GNU tools instead of osx counterparts (grep find etc) 
       shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.zshrc
-      when: install_oh_my_zsh == true
 
-    - name: Use GNU tools instead of osx counterparts (grep find etc) (BASH)
-      shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.bash_profile
-      when: install_oh_my_zsh != true
 
     - name: Configure System Settings
       script: scripts/system_settings.sh
