@@ -68,64 +68,92 @@ You can do this as many times as you like and re-run the `ansible-playbook` comm
 
 Apps installed with Homebrew Cask:
 
-TODO: update this list
+  - 1password
+  - alfred # | http://www.alfredapp.com 
+  - apptrap # remove associated prefs when uninstalling
+  - appzapper # uninstaller
+  - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
+  - carbon-copy-cloner # backups | https://bombich.com/download
+  - cheatsheet # know your shortcuts
+  - cyberduck # ftp, s3, openstack
+  - dash # totally sick API browser
+  - diffmerge # free visual diq
+  - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
+  - dropbox # a worse Mega Sync
+  - firefox 
+  - flux # get more sleep
+  - google-chrome
+  - imageoptim # optimize images
+  - istumbler # network discovery GUI
+  - jumpcut # awesome clipboard
+  - karabiner # Keyboard customization
+  - licecap # GIFs !
+  - little-snitch # awesome outbound firewall
+  - megasync # a better Dropbox  
+  - monolingual # remove unneeded osx lang files
+  - nvalt # fast note taking
+  - qlcolorcode # quick look syntax highlighting
+  - qlimagesize # quick look image dimensions
+  - qlmarkdown # quick look .md files
+  - qlstephen # quick look extension-less text files
+  - rowanj-gitx # Awesome gitx fork.
+  - sequel-pro # FREE SQL GUI!
+  - shortcat # kill your mouse
+  - shuttle # ssh management
+  - skype # 
+  - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
+  - thunderbird # email
+  - tomighty # pomodoro
+  - torbrowser # be the noise
+  - transmission # torrents
+  - tunnelblick # VPN
+  - vagrant # | https://www.vagrantup.com/downloads.html
+  - vagrant-manager # 
+  - virtualbox # | https://www.virtualbox.org/
+  - vlc 
 
-  - Adium
-  - BetterTouchTool
-  - Google Chrome
-  - Dropbox
-  - Firefox
-  - Handbrake
-  - Homebrew
-  - Karabiner
-  - LICEcap
-  - MacVim
-  - Menu Meters
-  - nvALT
-  - Sequel Pro (MySQL client)
-  - Skype
-  - Skitch
-  - Seil
-  - Sublime Text
-  - TextMate
-  - TimeMachineEditor
-  - Tower (Git client)
-  - Transmit (S/FTP client)
-  - Vagrant (+ Vagrant Manager)
-  - VirtualBox
-  - VLC
-
-There are many more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
+There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
 
 
 ### Packages/Utilities 
  
 Things installed with Homebrew:
 
-TODO: update this list
-
-  - ansible
   - autoconf
-  - gettext
-  - libevent
-  - packer
-  - python
-  - sqlite
-  - mysql
-  - php56 (+ php56-xdebug)
-  - ssh-copy-id
-  - cowsay
-  - ios-sim
-  - readline
-  - subversion
-  - kdiff3
-  - openssl
-  - pv
-  - drush
-  - wget
+  - autojump # quickly navigate from cmd line
+  - bash # Bash 4
+  - boot2docker # for running docker on osx
   - brew-cask
+  - coreutils # Install GNU core utilities (those that come with OS X are outdated)
+  - cowsay # amazing
+  - docker # | https://docs.docker.com/installation/mac/
+  - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+  - git
+  - go
+  - gpg
+  - hub # github
+  - keybase # in alpha at time of writing.
+  - mtr # better traceroute
+  - node
+  - npm
+  - openssl
+  - packer
+  - postgresql # yes and nosql
+  - python
+  - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
+  - readline
+  - redis
+  - rename # rename multiple files
+  - rsync
+  - ruby-build
+  - sqlite # production rails DB
+  - the_silver_searcher # fast ack-grep
+  - tmux
+  - vim
+  - wget
+  - zsh
 
-There are many more common utils listed in the playbook.yml - simply uncomment them to include them in your install. 
+There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install. 
 
 
 ### System Settings
@@ -141,9 +169,23 @@ It does some reasonably gnarly stuff e.g.
   - Set mouse tracking rate.
   - and lots more...
 
-so you might want to read it very carefully first. (see scripts/system_settings.sh)
+so you need read it very carefully first. (see scripts/system_settings.sh)
 
 TODO: moar sick settings with https://github.com/ryanmaclean/OSX-Post-Install-Script
+
+
+### User Preferences
+
+It then syncs your user prefs with dotfiles+rcm
+
+It grabs the [thoughttbot/dotfiles](https://github.com/thoughtbot/dotfiles) repo, saves it in `~/src/thoughtbot/dotfiles` and symlinks it to ~/dotfiles. 
+
+It then grabs [glennr/dotfiles](https://github.com/glennr/dotfiles) repo, saves it in `~/src/glennr/dotfiles` and symlinks it to ~/dotfiles-local
+
+You probably want to change the `dotfile_repo_username` variable to match your github username :-)
+
+It then runs rcup to initialize your dotfiles.
+
 
 
 ### MacStore Apps (WIP)
@@ -166,13 +208,6 @@ TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh a
 Keep your application settings in sync.
 
 TODO: Add Mackup task
-
-
-### User Preferences
-
-Keep your user prefs in sync
-
-TODO: dotfiles - use rcm ?
 
 
 ### Other 
