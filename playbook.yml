@@ -4,6 +4,7 @@
   vars:
 
     applications:
+      - 1password
       #- adium 
       - alfred # | http://www.alfredapp.com 
       #- anvil # run sites locally 
@@ -179,7 +180,15 @@
       shell: brew cask install {{ item }}
       with_items: applications
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
- 
+
+    # Caveats: megasync only works if called from /Applications
+    - name: Linking MEGASync with brew-cask
+      file: src=/Applications/MEGAsync.app
+            dest=/opt/homebrew-cask/Caskroom/megasync/latest/MEGAsync.app
+            state=link 
+      when: "{{ 'megasync' in applications }}"  
+
+
 
     ### ZSH radness 
 
@@ -257,3 +266,17 @@
 
     - name: Generate dotfiles with rcup
       shell: env RCRC=$HOME/dotfiles/rcrc rcup
+
+
+    ## POST INSTALL STEPS / Cask gotchas
+    #
+    # require manual intervention!
+    #
+    
+    - name: Run Little Snitch Installer
+      shell: open /opt/homebrew-cask/Caskroom/little-snitch/3.5.3/Little\ Snitch\ Installer.app
+      when: "{{ 'little-snitch' in applications }}" 
+
+    - name: Run Monolingual
+      shell: open ~/Applications/Monolingual.app
+      when: "{{ 'monolingual' in applications }}"  
