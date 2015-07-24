@@ -200,7 +200,8 @@ echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 # Dock & Mission Control
 ###############################################################################
 
-# Wipe all (default) app icons from the Dock
+echo ""
+echo "Wipe all (default) app icons from the Dock"
 # This is only really useful when setting up a new Mac, or if you don't use
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
@@ -219,6 +220,52 @@ echo "Setting Dock to auto-hide and removing the auto-hiding delay"
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0
+
+echo ""
+echo "Enable spring loading for all Dock items"
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+echo ""
+echo "Show indicator lights for open applications in the Dock"
+defaults write com.apple.dock show-process-indicators -bool true
+
+echo ""
+echo "Wipe all (default) app icons from the Dock"
+# This is only really useful when setting up a new Mac, or if you don't use
+# the Dock to launch apps.
+defaults write com.apple.dock persistent-apps -array
+
+echo ""
+echo "Don't animate opening applications from the Dock"
+defaults write com.apple.dock launchanim -bool false
+
+echo ""
+echo "Make Dock icons of hidden applications translucent"
+defaults write com.apple.dock showhidden -bool true
+
+echo ""
+echo "Speed up Mission Control animations"
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+echo ""
+echo "Don't group windows by application in Mission Control"
+echo ""
+echo "(i.e. use the old Expose behavior instead)"
+defaults write com.apple.dock expose-group-by-app -bool false
+
+echo ""
+echo "Disable Dashboard"
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+echo ""
+echo "Don't show Dashboard as a Space"
+defaults write com.apple.dock dashboard-in-overlay -bool true
+
+echo ""
+echo "Don't automatically rearrange Spaces based on most recent use"
+defaults write com.apple.dock mru-spaces -bool false
+
+
 
 
 ###############################################################################
@@ -316,6 +363,28 @@ echo "Disable continuous spell checking"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+echo ""
+echo "Show the main window when launching Activity Monitor"
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+echo ""
+echo "Visualize CPU usage in the Activity Monitor Dock icon"
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+echo ""
+echo "Show all processes in Activity Monitor"
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+echo ""
+echo "Sort Activity Monitor results by CPU usage"
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+
+###############################################################################
 # Personal Additions
 ###############################################################################
 
@@ -348,6 +417,11 @@ sudo pmset -a standbydelay 43200
 echo ""
 echo "Disable annoying backswipe in Chrome"
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
+echo ""
+echo "Use the system-native print preview dialog in Chrome"
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 
 
 echo ""
