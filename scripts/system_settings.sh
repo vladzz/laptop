@@ -196,6 +196,33 @@ echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 
+echo ""
+echo "Disable disk image verification"
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+echo ""
+echo "Automatically open a new Finder window when a volume is mounted"
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+echo ""
+echo "Use list view in all Finder windows by default"
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+
+echo ""
+echo "Disable the warning before emptying the Trash"
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+echo ""
+echo "Empty Trash securely by default"
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+
+
 ###############################################################################
 # Dock & Mission Control
 ###############################################################################
@@ -427,6 +454,7 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 echo ""
 echo "Disable the sound effects on boot"
 sudo nvram SystemAudioVolume=" "
+
 
 
 ###############################################################################
