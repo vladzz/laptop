@@ -349,6 +349,12 @@ echo ""
 echo "Disable annoying backswipe in Chrome"
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 
+
+echo ""
+echo "Disable the sound effects on boot"
+sudo nvram SystemAudioVolume=" "
+
+
 ###############################################################################
 # Kill affected applications
 ###############################################################################
