@@ -1,8 +1,8 @@
 # Laptop
 
-Laptop is a playbook to set up an OS X laptop (for web development).
+Laptop is a playbook to set up an OS X laptop (for web/mobile development) also included some of my design tools and collaboration tools.
 
-It installs and configures most of the software Siyelo uses on our Macs for web and software development. 
+It installs and configures most of the software vladzz uses on his Mac for software development.
 
 It can be run multiple times on the same machine safely. It installs, upgrades, or skips packages based on what is already installed on the machine.
 
@@ -11,7 +11,7 @@ It can be run multiple times on the same machine safely. It installs, upgrades, 
 
 We've tested it on;
 
-* OS X Yosemite (~10.10.4)
+* OS X Sierra (~10.12.2)
 
 
 ## Installation
@@ -20,7 +20,7 @@ We've tested it on;
 
 If you'd like to start with my default list of tools and apps (see Included Apps/Config below), then simply install with;
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/vladzz/laptop/master/install.sh)"
 
 
 You can always customize the install after-the-fact (see below), and re-run the playbook. It will skip over any installed apps.
@@ -31,12 +31,12 @@ If you want to add/remove to the list of apps/utils installed, its pretty straig
 
 As above, download and bootstrap the script. But stop it before it starts ansible, and edit the playbook as desired, before re-running ansible.
 
-1. Grab and start the bootstrap script. Let it install the prereqs and clone the full `siyelo/laptop` repo locally...
+1. Grab and start the bootstrap script. Let it install the prereqs and clone the full `vladzz/laptop` repo locally...
 
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/vladzz/laptop/master/install.sh)"
 
 
-1. Stop the script (Ctrl+C) when ansible asks for the a 'sudo' password. 
+1. Stop the script (Ctrl+C) when ansible asks for the a 'sudo' password.
 
         ```
         Changing to laptop repo dir ...
@@ -50,13 +50,14 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 
         cd laptop
 
-1. Edit playbook.yml and add/remove the apps/utils you want. 
+1. Edit playbook.yml and add/remove the apps/utils you want.
 
         vi playbook.yml
 
 1. Kick off ansible manually
 
-        ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
+        ansible-galaxy install -r requirements.yml
+        ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv
 
 You can do this as many times as you like and re-run the `ansible-playbook` command. Ansible is smart enough to skip installed apps, so subsequent runs are super fast.
 
@@ -66,104 +67,79 @@ You can do this as many times as you like and re-run the `ansible-playbook` comm
 ### Applications
 
 Apps installed with Homebrew Cask:
-
-  - 1password
-  - alfred # | http://www.alfredapp.com 
   - apptrap # remove associated prefs when uninstalling
+  - appcode
   - appzapper # uninstaller
+  - atom # sublime without annoying popup | https://atom.io/download/mac
   - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-  - carbon-copy-cloner # backups | https://bombich.com/download
-  - cheatsheet # know your shortcuts
+  - cakebrew
+  - calibre # berks
   - cyberduck # ftp, s3, openstack
   - dash # totally sick API browser
   - diffmerge # free visual diq
   - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-  - dropbox # a worse Mega Sync
-  - firefox 
+  - docker-toolbox
+  - docker
   - flux # get more sleep
   - google-chrome
-  - imageoptim # optimize images
-  - istumbler # network discovery GUI
-  - jumpcut # awesome clipboard
-  - karabiner # Keyboard customization
-  - licecap # GIFs !
-  - little-snitch # awesome outbound firewall
-  - megasync # a better Dropbox  
-  - monolingual # remove unneeded osx lang files
-  - nvalt # fast note taking
+  - google-drive
+  - hipchat
+  - iterm2
+  - iconjar
+  - icons8
+  - mounty
   - qlcolorcode # quick look syntax highlighting
   - qlimagesize # quick look image dimensions
   - qlmarkdown # quick look .md files
+  - qlplayground
   - qlstephen # quick look extension-less text files
-  - rowanj-gitx # Awesome gitx fork.
-  - sequel-pro # FREE SQL GUI!
-  - shortcat # kill your mouse
-  - shuttle # ssh management
-  - skype # 
-  - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
-  - thunderbird # email
-  - tomighty # pomodoro
-  - torbrowser # be the noise
-  - transmission # torrents
-  - tunnelblick # VPN
-  - vagrant # | https://www.vagrantup.com/downloads.html
-  - vagrant-manager # 
+  - qlswift
+  - qlvideo
+  - reveal
+  - sketch
+  - skype #
+  - sourcetree
+  - spotify
+  - steam
   - virtualbox # | https://www.virtualbox.org/
-  - vlc 
+  - vlc
+  - wordpresscom
+  - zeplin
 
-There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
+There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install.
 
 
-### Packages/Utilities 
- 
+### Packages/Utilities
+
 Things installed with Homebrew:
 
-  - autoconf
-  - autojump # quickly navigate from cmd line
   - bash # Bash 4
-  - boot2docker # for running docker on osx
-  - brew-cask
   - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-  - cowsay # amazing
+  - ctags
+  - curl
   - docker # | https://docs.docker.com/installation/mac/
   - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
   - git
-  - go
-  - gpg
-  - hub # github
-  - keybase # in alpha at time of writing.
-  - mtr # better traceroute
-  - node
-  - npm
+  - mas
   - openssl
-  - packer
-  - postgresql # yes and nosql
-  - python
   - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
   - readline
-  - redis
-  - rename # rename multiple files
-  - rsync
-  - ruby-build
-  - sqlite # production rails DB
-  - the_silver_searcher # fast ack-grep
-  - tmux
   - vim
   - wget
   - zsh
 
-There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install. 
+There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install.
 
 
 ### System Settings
 
-It also installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
+It also installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716).
 
 It does some reasonably gnarly stuff e.g.
 
   - hide spotlight icon
   - disable app Gate Keeper
-  - change stand-by delay from 1hr to 12hrs. 
+  - change stand-by delay from 1hr to 12hrs.
   - Set trackpad tracking rate.
   - Set mouse tracking rate.
   - and lots more...
@@ -177,7 +153,7 @@ TODO: moar sick settings with https://github.com/ryanmaclean/OSX-Post-Install-Sc
 
 It then syncs your user prefs with dotfiles+rcm
 
-It grabs the [thoughttbot/dotfiles](https://github.com/thoughtbot/dotfiles) repo, saves it in `~/src/thoughtbot/dotfiles` and symlinks it to ~/dotfiles. 
+It grabs the [thoughttbot/dotfiles](https://github.com/thoughtbot/dotfiles) repo, saves it in `~/src/thoughtbot/dotfiles` and symlinks it to ~/dotfiles.
 
 It then grabs [glennr/dotfiles](https://github.com/glennr/dotfiles) repo, saves it in `~/src/glennr/dotfiles` and symlinks it to ~/dotfiles-local
 
@@ -187,17 +163,23 @@ It then runs rcup to initialize your dotfiles.
 
 
 
-### MacStore Apps (WIP)
+### MacStore Apps
 
 These apps only available via the App Store. (sigh)
+As long as you have already signed into the appstore app prior these will autoinstall
 
-TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
-
-  - Monosnap
-  - Pages
-  - Keynote
-  - Numbers
-  - etc
+  - 443987910 # 1Password
+  - 491200486 # iClarified
+  - 405399194 # kindle
+  - 604825918 # Valentina Studio
+  - 603117688 # CCMenu
+  - 407963104 # Pixelmator
+  - 561995913 # Color maker
+  - 937984704 # Amphetamine
+  - 1039633667 # Irvue
+  - 1037126344 # Apple Configurator 2
+  - 803453959 # Slack
+  - 497799835 # Xcode
 
 
 
@@ -208,34 +190,25 @@ Keep your application settings in sync.
 TODO: Add Mackup task
 
 
-### Other 
+### Other
 
 - install fonts like a boss : http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
 
-- TODO: Install [Sublime Package Manager](http://sublime.wbond.net/installation).
-- ZSH tab/auto completion
-- Powerline in tmux
-- zsh-autosuggestions plugin
-- zsh-history-substring-search plugin
-- zsh-notify plugin
-
-
-
 ## Development
 
-You shouldn't wipe your entire workstation and start from scratch just to test changes to the playbook. 
+You shouldn't wipe your entire workstation and start from scratch just to test changes to the playbook.
 
 Instead, you can follow theses instructions for [how to build a Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which you can continually run and re-run this playbook to test changes and make sure things work correctly.
 
 ### Approach
 
-We've tested it using an OSX 10.10 Vagrant/Virtualbox VM for developing & testing the Ansible scripts.
+We've tested it using an OSX 10.12 Vagrant/Virtualbox VM for developing & testing the Ansible scripts.
 
-Simply spin up the Yosemite box in a VM, and have vagrant kick off the laptop setup.
+Simply spin up the Sierra box in a VM, and have vagrant kick off the laptop setup.
 
 ### Whats included?
 
-Nada. Well not much. The whole point is to test the process of getting our OSX dev machines from zero to hero. 
+Nada. Well not much. The whole point is to test the process of getting our OSX dev machines from zero to hero.
 
 The Vagrant box we use is a [clean-ish install of OSX](https://github.com/timsutton/osx-vm-templates). However the setup notes above uses Packer, which installs Xcode CLI tools. This can't be automated in an actual test run, and needs user intervention to install.
 
@@ -243,28 +216,12 @@ The Vagrant box we use is a [clean-ish install of OSX](https://github.com/timsut
 ### Test Setup
 
 1. Get [Homebrew Cask](http://caskroom.io/)
-    
+
         brew install caskroom/cask/brew-cask
-
-1. Install [Vagrant](https://www.vagrantup.com/downloads) 
-
-        brew cask install --appdir="/Applications" vagrant
 
 1. Install VirtualBox;
 
         brew cask install --appdir="/Applications" virtualbox
-
-1. cd into this project directory;
-
-1. Run 
-
-        vagrant init http://files.dryga.com/boxes/osx-yosemite-10.10.3.0.box;
-
-1. The Vagrantfile should be ready as soon as Vagrant downloads the box;
-
-1. Start VM 
-
-        vagrant up
 
 ### Notes
 
@@ -283,7 +240,7 @@ The Vagrant box we use is a [clean-ish install of OSX](https://github.com/timsut
 
 ## Author
 
-[Glenn Roberts](http://glenn-roberts.com), 2015. 
+[Glenn Roberts](http://glenn-roberts.com), 2015.
 
 
 ## Credits
@@ -301,4 +258,3 @@ This project is based off the work of the following folks;
   - [Battleschool](http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool) is a more general solution than what I've built here. (It may be a better option if you don't want to fork this repo and hack it for your own workstation...).
   - [osxc](https://github.com/osxc) is another more general solution, set up so you can fork the [xc-custom](https://github.com/osxc/xc-custom) repo and get your own local environment bootstrapped quickly.
   - [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks) was the original inspiration for this repository, but this project has since been completely rewritten.
-

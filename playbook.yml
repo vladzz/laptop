@@ -53,12 +53,9 @@
       - homebrew/dupes # gnu grep
       - homebrew/versions
 
-    dotfile_repo_username: glennr # the GH repo where your dotfiles are
-
     brew_utils:
       # - ansible #already installed by ./mac bootstrap script
       - bash # Bash 4
-      - brew-cask
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
       - ctags
       - curl
@@ -90,13 +87,11 @@
       - 1039633667 # Irvue
       - 1037126344 # Apple Configurator 2
       - 803453959 # Slack
-      
-    mas_email: ""
-    mas_password: ""
+      - 497799835 # Xcode
 
   roles:
     - name: geerlingguy.mas
-      when: mas_installed_app_id
+      when: mas_installed_app_ids
 
   tasks:
 
@@ -108,39 +103,38 @@
       shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
       when: brew_installed.stat.exists == false
 
-    - name: Instal required Homebrew Taps
+    - name: Install required Homebrew Taps
       shell: brew tap {{ item }}
-      with_items: brew_taps
+      with_items: "{{ brew_taps }}"
 
     - name: Check homebrew-cask is installed
       stat: path=/usr/local/bin/brew-cask.rb
       register: brew_cask_installed
 
     - name: Install homebrew-cask
-      shell: brew install brew-cask
+      shell: brew install cask
       when: brew_cask_installed.stat.exists == false
 
     ### UTILS
 
     - name: Install libraries/utils with homebrew
       homebrew: name={{ item }} state=present
-      with_items: brew_utils
+      with_items: "{{ brew_utils }}"
 
     - name: Cleanup after brewing
       shell: brew cleanup
-
 
     ### APPZ
 
     - name: Check for installed apps(casks)
       shell: brew cask list | grep {{ item }}
       register: installed_applications
-      with_items: applications
+      with_items: "{{ applications }}"
       ignore_errors: true
 
     - name: Install Apps with brew-cask
       shell: brew cask install {{ item }}
-      with_items: applications
+      with_items: "{{ applications }}"
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
     ### ZSH radness
