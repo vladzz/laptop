@@ -97,6 +97,7 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 
 fancy_echo "Showing all filename extensions in Finder by default"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder AppleShowAllFiles YES
 
 fancy_echo "Showing status bar in Finder by default"
 defaults write com.apple.finder ShowStatusBar -bool true
