@@ -44,10 +44,19 @@
       - wordpresscom
       - zeplin
 
+    fonts:
+      - font-roboto
+      - font-menlo-for-powerline
+      #- font-sanfrancisco
+      - font-awesome-terminal-fonts
+      - font-nexa
+      - font-fontawesome
+
     install_oh_my_zsh:  true
 
     brew_taps:
       - caskroom/cask
+      - caskroom/fonts
       - caskroom/versions # for sublime-text3
       - homebrew/binary
       - homebrew/dupes # gnu grep
@@ -70,6 +79,7 @@
       - vim
       - wget
       - zsh
+      - clang-format
 
     zsh_path: /usr/local/bin/zsh
 
@@ -136,6 +146,17 @@
       shell: brew cask install {{ item }}
       with_items: "{{ applications }}"
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+
+    ### fonts
+    - name: Install programmer fonts
+      shell: curl -L https://github.com/hbin/top-programming-fonts/raw/master/install.sh | bash
+
+    - name: Install fonts with brew-cask
+      shell: brew cask install {{ item }}
+      with_items: "{{ fonts }}"
+      when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+
+
 
     ### ZSH radness
 
